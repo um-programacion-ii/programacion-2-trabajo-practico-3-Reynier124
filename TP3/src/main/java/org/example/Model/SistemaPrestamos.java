@@ -19,7 +19,7 @@ public class SistemaPrestamos {
     public Prestamo prestarLibro(String isbn){
         Libro libro = catalogo.buscarPorIsbn(isbn);
         if (libro.getEstado() == Estado.DISPONIBLE){
-            Prestamo prestamo = new Prestamo(LocalDate.now(), libro);
+            Prestamo prestamo = new Prestamo(libro);
             prestamos.add(prestamo);
             libro.setEstado(Estado.PRESTADO);
             return prestamo;
