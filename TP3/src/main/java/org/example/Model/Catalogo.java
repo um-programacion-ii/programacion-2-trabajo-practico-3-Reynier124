@@ -23,7 +23,7 @@ public class Catalogo {
                 .filter(l -> l.getISBN().equals(isbn))
                 .findFirst();
         if (resultado.isEmpty()){
-            throw new LibroNoDisponibleException("Libro no encontrado");
+            throw new LibroNoDisponibleException("El libro no fue encontrado");
         }
         return resultado.orElse(null);
     }
