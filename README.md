@@ -222,6 +222,9 @@ El uso de Inteligencia Artificial (IA) como herramienta de asistencia en el desa
    - La IA es una herramienta de asistencia, no un sustituto del aprendizaje
    - Se espera que el estudiante demuestre su comprensión de los conceptos a través de su implementación
 
+## Uso de la Inteligencia artificial por parte del estudiante
+Se utilizo Inteligencia artifical para ayudar con los tests de la etapa 3 y etapa 4
+
 ## Recursos Adicionales
 - [Documentación de JUnit5](https://junit.org/junit5/docs/current/user-guide/)
 - [Documentación de Mockito](https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html)
