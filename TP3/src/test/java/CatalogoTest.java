@@ -3,10 +3,13 @@ import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.example.Enum.Estado;
+import org.example.Model.Catalogo;
 import org.example.Model.Libro;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 
 public class CatalogoTest {
@@ -36,5 +39,12 @@ public class CatalogoTest {
     void testBusquedaFallida(){
         Libro libro = catalogo.buscarPorIsbn("978-3-16-148410-8");
         assertNull(libro);
+    }
+
+    @DisplayName("Devolver lista")
+    @Test
+    void testMostrarLibros() {
+        List<Libro> prueba = catalogo.todosLosLibros();
+        assertEquals(2, prueba.size());
     }
 }

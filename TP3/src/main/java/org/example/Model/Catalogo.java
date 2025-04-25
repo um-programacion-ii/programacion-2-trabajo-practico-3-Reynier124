@@ -3,6 +3,7 @@ package org.example.Model;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @ToString
 public class Catalogo {
-    private List<Libro> libros;
+    private List<Libro> libros = new ArrayList<>();
 
     public void agregarLibro(Libro libro) {
         this.libros.add(libro);
