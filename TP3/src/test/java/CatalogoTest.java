@@ -2,7 +2,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.example.Enum.Estado;
 import org.example.Model.Catalogo;
 import org.example.Model.Libro;
 import org.junit.jupiter.api.BeforeEach;
