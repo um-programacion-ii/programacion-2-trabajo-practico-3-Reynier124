@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/jpLeSJQi)
 # Sistema de Gestión de Biblioteca - Práctica de Testing
 
 ![Java](https://img.shields.io/badge/Java-21-orange)
@@ -10,9 +11,9 @@
 - **Recomendación:** Se sugiere leer la consigna completa antes de comenzar con el desarrollo para tener una visión general del proyecto y planificar adecuadamente el trabajo.
 
 ## Identificación del Alumno
-- **Nombre:** [Nombre del Alumno]
-- **Apellido:** [Apellido del Alumno]
-- **Legajo:** [Número de Legajo]
+- **Nombre:** Reynier
+- **Apellido:** López
+- **Legajo:** 69182
 
 ## Importante
 - La rama `main` está protegida y no se pueden hacer commits directos sobre ella
@@ -220,6 +221,9 @@ El uso de Inteligencia Artificial (IA) como herramienta de asistencia en el desa
    - El trabajo final debe reflejar el aprendizaje y comprensión del estudiante
    - La IA es una herramienta de asistencia, no un sustituto del aprendizaje
    - Se espera que el estudiante demuestre su comprensión de los conceptos a través de su implementación
+
+## Uso de la Inteligencia artificial por parte del estudiante
+Se utilizo Inteligencia artifical para ayudar con los tests de la etapa 3 y etapa 4
 
 ## Recursos Adicionales
 - [Documentación de JUnit5](https://junit.org/junit5/docs/current/user-guide/)
