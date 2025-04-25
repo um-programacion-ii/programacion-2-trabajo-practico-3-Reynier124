@@ -1,7 +1,7 @@
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.example.Exceptions.LibroNoDisponibleException;
 import org.example.Model.Catalogo;
 import org.example.Model.Libro;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +27,7 @@ public class CatalogoTest {
 
     @DisplayName("Búsqueda exitosa")
     @Test
-    void testBuscarPorIsbn() {
+    void testBuscarPorIsbn() throws LibroNoDisponibleException {
         Libro libro = catalogo.buscarPorIsbn("978-3-16-148410-0");
         assertNotNull(libro);
         assertEquals("Clean Code", libro.getTitulo());
@@ -35,9 +35,10 @@ public class CatalogoTest {
 
     @DisplayName("Búsqueda fallida")
     @Test
-    void testBusquedaFallida(){
-        Libro libro = catalogo.buscarPorIsbn("978-3-16-148410-8");
-        assertNull(libro);
+    void testBusquedaFallida() throws LibroNoDisponibleException {
+        assertThrows(LibroNoDisponibleException.class, () -> {
+            catalogo.buscarPorIsbn("978-3-16-148410-1");
+        });
     }
 
     @DisplayName("Devolver lista")

@@ -1,5 +1,4 @@
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -8,6 +7,7 @@ import org.example.Model.Catalogo;
 import org.example.Model.SistemaPrestamos;
 import org.example.Model.Prestamo;
 import org.example.Model.Libro;
+import org.example.Exceptions.LibroNoDisponibleException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ public class PrestamosTest {
     private SistemaPrestamos sistemaPrestamos;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws LibroNoDisponibleException {
         MockitoAnnotations.initMocks(this);
         libro = new Libro("978-3-16-148410-0", "Clean Code", "Robert C. Martin");
         when(catalogo.buscarPorIsbn("978-3-16-148410-0")).thenReturn(libro);
@@ -33,7 +33,7 @@ public class PrestamosTest {
 
     @DisplayName("Prestar libro")
     @Test
-    void testPrestarLibro() {
+    void testPrestarLibro() throws LibroNoDisponibleException {
         Prestamo prestamo = sistemaPrestamos.prestarLibro("978-3-16-148410-0");
 
         assertNotNull(prestamo);
@@ -43,7 +43,7 @@ public class PrestamosTest {
 
     @DisplayName("Devolver libro")
     @Test
-    void testDevolverLibro() {
+    void testDevolverLibro() throws LibroNoDisponibleException {
         Prestamo prestamo = sistemaPrestamos.prestarLibro("978-3-16-148410-0");
         assertNotNull(prestamo);
         assertEquals(Estado.PRESTADO, libro.getEstado());
@@ -55,4 +55,49 @@ public class PrestamosTest {
 
     }
 
+    @DisplayName("Prestar libro no encontrado")
+    @Test
+    void testPrestarLibroNoEncontrado() throws LibroNoDisponibleException {
+        when(catalogo.buscarPorIsbn("978-3-16-148410-1")).thenThrow(new LibroNoDisponibleException("Libro no encontrado"));
+
+        assertThrows(LibroNoDisponibleException.class, () -> {
+            sistemaPrestamos.prestarLibro("978-3-16-148410-1");
+        });
+
+        assertEquals(Estado.DISPONIBLE, libro.getEstado());
+    }
+
+    @DisplayName("Devolver libro no encontrado")
+    @Test
+    void testDevolverLibroNoEncontrado() throws LibroNoDisponibleException {
+        when(catalogo.buscarPorIsbn("978-3-16-148410-1")).thenThrow(new LibroNoDisponibleException("Libro no encontrado"));
+
+        assertThrows(LibroNoDisponibleException.class, () -> {
+            sistemaPrestamos.devolverLibro("978-3-16-148410-1");
+        });
+
+        assertEquals(Estado.DISPONIBLE, libro.getEstado());
+    }
+
+    @DisplayName("Prestar libro ya prestado")
+    @Test
+    void testPrestarLibroYaPrestado() throws LibroNoDisponibleException {
+        libro.setEstado(Estado.PRESTADO);
+
+        assertThrows(LibroNoDisponibleException.class, () -> {
+            Prestamo prestamo = sistemaPrestamos.prestarLibro("978-3-16-148410-0");
+        });
+
+    }
+
+    @DisplayName("Devolver libro ya devuelto")
+    @Test
+    void testDevolverLibroYaDevuelto() throws LibroNoDisponibleException {
+        libro.setEstado(Estado.DISPONIBLE);
+
+        assertThrows(LibroNoDisponibleException.class, () -> {
+            sistemaPrestamos.devolverLibro("978-3-16-148410-0");
+        });
+    }
 }
+
